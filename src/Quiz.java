@@ -3,52 +3,45 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Quiz implements ActionListener{
-	
+	// Pyetjet 
 	String[] questions = 	{
-								"Which company created Java?",
-								"Which year was Java created?",
-					     		"What was Java originally called?",
-							/*	"Who is credited with creating Java?",
-								"Pyetje palidhje 1?",
-								"Pyetje palidhje 2?",
-								"Pyetje palidhje 3?",
-								"Pyetje palidhje 4?",
-								"Pyetje palidhje 5?",
-								"Pyetje palidhje 6?" */
+								"Sa eshte masa relative molekulare e amoniakut ?",
+								"Cili eshte shteti me me se shumti banore ?",
+					     		"Nga cili shtet rrjedh fjala kimi ?",
+							    "Ne cilin vit udhetoi Magelani rreth botes ?",
+							    "Kush e vrau Esat Pashe Toptanin ?"
+							    // Vazhdimi i pyetjeve te tjera ...
 								
 							};
+	// Opsionet
 	String[][] options = 	{
-								{"Sun Microsystems","Starbucks","Microsoft","Alphabet"},
-								{"1989","1996","1972","1492"},
-								{"Apple","Latte","Oak","Koffing"},
-							/*  {"Steve Jobs","Bill Gates","James Gosling","Mark Zuckerburg"},
-								{"1","2","3","4"},
-								{"1","2","3","4"},
-								{"1","2","3","4"},
-								{"1","2","3","4"},
-								{"1","2","3","4"},
-								{"1","2","3","4"} */
+								{"4","17", "22","13"},
+								{"Australia","Rusia ","Amerika","Kina "},
+								{"Kina","Persia","Egjipti ","Iliria"},
+							    {"1419 ","1423","1438","1443"},
+							    {"Enver Hoxha","Ahmet Zogu","Azem Galica","Avni Rrustemi"},
+								// Alternativat per pyetjet ne vazhdim 
 								
 							};
+	// Pergjigjia e sakte  
 	char[] answers = 		{
-								'A',
 								'B',
+								'D',
 							    'C',
-							 /* 'C',
-								'A',
-								'A',
-								'A',
-								'A',
-								'A',
-								'A' */
+							    'A',
+							    'D'
+							// Pergjigjet e sakta per pyetjet ne vazhdim
 							};
+	// Deklarimi i variablave
 	char guess;
 	char answer;
 	int index;
 	int correct_guesses =0;
 	int total_questions = questions.length;
 	int result;
-	int seconds=10;
+	int seconds=15;
+	
+	// Krijimi i formave
 	
 	JFrame frame = new JFrame();
 	JTextField textfield = new JTextField();
@@ -79,7 +72,10 @@ public class Quiz implements ActionListener{
 			}
 		});
 	
+	// Krijimi i konstruktorit Quiz 
 	public Quiz() {
+		
+		// Stilizimi i pamjes grafike te aplikacionit
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(650,650);
 		frame.getContentPane().setBackground(new Color(50,50,50));
@@ -161,7 +157,7 @@ public class Quiz implements ActionListener{
 		time_label.setForeground(new Color(255,0,0));
 		time_label.setFont(new Font("MV Boli",Font.PLAIN,16));
 		time_label.setHorizontalAlignment(JTextField.CENTER);
-		time_label.setText("timer >:D");
+		time_label.setText("Koha: ");
 		
 		number_right.setBounds(225,225,200,100);
 		number_right.setBackground(new Color(25,25,25));
@@ -203,6 +199,7 @@ public class Quiz implements ActionListener{
 		
 		nextQuestion();
 	}
+	// Metoda per marrjen e pyetjeve
 	public void nextQuestion() {
 		
 		if(index>=total_questions) {
@@ -218,6 +215,8 @@ public class Quiz implements ActionListener{
 			timer.start();
 		}
 	}
+	
+	// Krijimi i metodave per klikimin e butonave 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -252,6 +251,10 @@ public class Quiz implements ActionListener{
 			}
 			displayAnswer();
 	}
+	
+/* Krijimi i metodave per te treguar 
+	pergjigjen e pyetjes nese eshte e sakte ose e gabuar */
+	
 	public void displayAnswer() {
 		
 		timer.stop();
@@ -281,7 +284,7 @@ public class Quiz implements ActionListener{
 				answer_labelD.setForeground(new Color(25,255,0));
 				
 				answer = ' ';
-				seconds=10;
+				seconds=15;
 				seconds_left.setText(String.valueOf(seconds));
 				buttonA.setEnabled(true);
 				buttonB.setEnabled(true);
@@ -294,6 +297,9 @@ public class Quiz implements ActionListener{
 		pause.setRepeats(false);
 		pause.start();
 	}
+	
+	// Rezultati final sa pyetje te sakta jane gjetur dhe % e saktesise. 
+	// Afishon nese useri ka kaluar ne rast se rezultati mbi 50% ose jo nese eshte nen 50%
 	public void results(){
 		
 		buttonA.setEnabled(false);
